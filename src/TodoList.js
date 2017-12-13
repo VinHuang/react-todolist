@@ -12,7 +12,7 @@ class TodoList extends Component {
   handleAddTodoItem(todoText){
     var items = this.state.todoItems;
     items.push({
-        id: items.length + 1,
+        id: items[items.length - 1].id + 1,
         data: todoText
     });
     this.setState({todoItems: items});
