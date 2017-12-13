@@ -3,13 +3,31 @@ import TodoItems from './TodoItems';
 import AddTodoForm from './AddTodoForm';
 
 class TodoList extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAddTodoItem = this.handleAddTodoItem.bind(this);
+    this.handleRemoveTodoItem = this.handleRemoveTodoItem.bind(this);
+    this.state = {todoItems: [{ id: 1, data: "do something" },{ id: 2, data: "do something other" }]};
+  }  
+  handleAddTodoItem(todoText){
+    var items = this.state.todoItems;
+    items.push({
+        id: items.length + 1,
+        data: todoText
+    });
+    this.setState({todoItems: items});
+  }
+  handleRemoveTodoItem(index){
+    var items = this.state.todoItems;
+    items.splice(index,1);
+    this.setState({todoItems: items});
+  }
+
   render() {
     return (
       <div className="todoList">
-        <h1>我是一個TodoList容器</h1>
-        <h2>我組合了TodoItems以及AddTodoForm兩個元件</h2>
-        <TodoItems />
-        <AddTodoForm />
+        <TodoItems items={this.state.todoItems} removeItem={this.handleRemoveTodoItem}/>
+        <AddTodoForm addItem={this.handleAddTodoItem}/>
       </div>
     );
   }
