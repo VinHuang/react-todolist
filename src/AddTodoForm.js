@@ -16,15 +16,23 @@ class AddTodoForm extends Component {
 
   render() {
     return (
-      <div>
-        <input 
-          type="text" 
-          value={this.state.todoText} 
-          onChange={this.handleTodoChange}/>
-        <button
-          onClick={this.handleAddTodoItem}>Add Todo Item
-        </button>
-      </div>
+      <div className="field has-addons">
+        <div className="control is-primary">
+          <input 
+            className="input is-primary" 
+            type="text" 
+            placeholder="Input Item Name" 
+            value={this.state.todoText}
+            onChange={this.handleTodoChange}/>
+        </div>
+        <div className="control">
+          <a 
+            className="button is-primary"
+            onClick={this.handleAddTodoItem}>
+              Add Todo Item
+          </a>
+        </div>
+      </div>      
     );
   }
 }
